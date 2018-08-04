@@ -1,21 +1,20 @@
 <template>
-  <div id="app">
-
-  </div>
+    <div id="app">
+        <image-wall></image-wall>
+    </div>
 </template>
 
 <script>
-
-export default {
-  name: 'app',
-  components: {
-  }
-}
+    import ImageWall from "./components/ImageWall";
+    export default {
+        name: 'app',
+        components: {ImageWall}
+    };
 
 </script>
 
 <style>
-#app {
+    #app {
 
-}
+    }
 </style>
