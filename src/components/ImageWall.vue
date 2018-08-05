@@ -12,27 +12,18 @@
 <script>
     import ImageFrame from "./ImageFrame";
 
+    import {mapState} from "vuex";
+
     // 600 x 200
     export default {
         name: "ImageWall",
         components: {ImageFrame},
-        data() {
-            return {
-                pathPrefix: "",
-                listImaes: [],
-                config: {
-                    radius: 30,
-                    height: 200,
-                    maxNumberImage: 10,
-                    offset: -30,
-                    border: {
-                        thickness: 4,
-                        color: "orange"
-                    }
-                }
-            };
-        },
         computed: {
+            ...mapState({
+                pathPrefix: state => state.pathPrefix,
+                listImages: state => state.listImages,
+                config: state => state.config
+            }),
             styleWall: function () {
                 return {
                     border: `${this.config.border.thickness}px ${this.config.border.color} solid`,
