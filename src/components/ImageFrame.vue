@@ -1,28 +1,28 @@
 <template>
     <div id="image" v-bind:style="styleDiv">
-        <img src="./../assets/test-0.jpg" v-bind:style="styleImg">
+        <img src="./../assets/test-8.jpg" v-bind:style="styleImg">
     </div>
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState, mapGetters} from "vuex";
 
     export default {
         name: "ImageFrame",
-        data(){
-            return {
-                width: 100,
-                offset: -200,
-            };
+        data() {
+            return {};
         },
         computed: {
+            ...mapGetters([
+                'getWidthByID',
+            ]),
             ...mapState({
                 config: state => state.config,
             }),
             styleDiv: function () {
                 return {
                     transform: `skew(-${this.config.degreeSkew}deg)`,
-                    "width": `${this.width}px`,
+                    "width": `${this.getWidthByID(0) * 100}%`,
                     "border-left": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
                     "border-right": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
                     "height": `${this.config.height}px`,
@@ -31,8 +31,13 @@
             styleImg: function () {
                 return {
                     transform: `skew(${this.config.degreeSkew}deg)`,
-                    left: `${this.offset}px`,
+                    left: `${this.getOffset()}px`,
                 };
+            }
+        },
+        methods: {
+            getOffset: function () {
+                return -250;
             }
         }
     };

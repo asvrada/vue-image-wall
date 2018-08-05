@@ -12,18 +12,45 @@
 <script>
     import ImageFrame from "./ImageFrame";
 
-    import {mapState} from "vuex";
+    import {mapState, mapGetters, mapMutations} from "vuex";
 
-    // 600 x 200
     export default {
         name: "ImageWall",
         components: {ImageFrame},
+        mounted() {
+            (function (self) {
+                window.addEventListener("resize", self.onUpdateWidth);
+            })(this);
+            this.onUpdateWidth();
+        },
+        beforeDestroy() {
+            (function (self) {
+                window.removeEventListener("resize", self.onUpdateWidth);
+            })(this);
+        },
+        methods: {
+            ...mapMutations([
+                'updateWidth'
+            ]),
+            onUpdateWidth: function () {
+                const newWidth = this.$el.getBoundingClientRect().width;
+                if (newWidth === this.width) {
+                    return;
+                }
+
+                this.updateWidth(newWidth);
+            }
+        },
         computed: {
             ...mapState({
+                width: state => state.config.width,
                 pathPrefix: state => state.pathPrefix,
                 listImages: state => state.listImages,
                 config: state => state.config
             }),
+            ...mapGetters([
+                'getContainerOffset'
+            ]),
             styleWall: function () {
                 return {
                     border: `${this.config.border.thickness}px ${this.config.border.color} solid`,
@@ -32,20 +59,20 @@
             },
             styleContainer: function () {
                 return {
-                    left: `${this.config.offset}px`,
+                    left: `-${this.getContainerOffset}px`,
                     height: `${this.config.height}px`
                 };
             }
-        }
+        },
     };
 </script>
 
 <style scoped lang="scss">
     #imagewall {
         overflow: hidden;
+
         #container_images {
             white-space: nowrap;
-            box-sizing: border-box;
             position: relative;
         }
     }
