@@ -9,24 +9,29 @@
 
     export default {
         name: "ImageFrame",
+        data(){
+            return {
+                width: 100,
+                offset: -200,
+            };
+        },
         computed: {
             ...mapState({
-                config: state => state.config.imageFrame,
-                globalConfig: state => state.config,
+                config: state => state.config,
             }),
             styleDiv: function () {
                 return {
                     transform: `skew(-${this.config.degreeSkew}deg)`,
-                    "width": `${this.config.width}px`,
-                    "border-left": `${this.globalConfig.border.thickness / 2}px ${this.globalConfig.border.color} solid`,
-                    "border-right": `${this.globalConfig.border.thickness / 2}px ${this.globalConfig.border.color} solid`,
-                    "height": `200px`,
+                    "width": `${this.width}px`,
+                    "border-left": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
+                    "border-right": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
+                    "height": `${this.config.height}px`,
                 };
             },
             styleImg: function () {
                 return {
                     transform: `skew(${this.config.degreeSkew}deg)`,
-                    left: `${this.config.offset}px`,
+                    left: `${this.offset}px`,
                 };
             }
         }

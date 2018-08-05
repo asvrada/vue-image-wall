@@ -12,15 +12,11 @@ export default new Vuex.Store({
             height: 200,
             maxNumberImage: 10,
             offset: -30,
+            degreeSkew: 15,
             border: {
                 thickness: 4,
                 color: "orange"
             },
-            imageFrame: {
-                width: 100,
-                offset: -200,
-                degreeSkew: 15,
-            }
         }
     },
     getters: {},
