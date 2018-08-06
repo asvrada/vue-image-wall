@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
 import gaussian from "gaussian";
 
 import {degreeToRad} from "./helper";
@@ -11,13 +10,13 @@ export default new Vuex.Store({
     strict: true,
     state: {
         listImages: [
-            "./../assets/test-0.jpg",
-            "./../assets/test-1.jpg",
-            "./../assets/test-2.jpg",
-            "./../assets/test-3.jpg",
-            "./../assets/test-4.jpg",
-            "./../assets/test-5.jpg",
-            "./../assets/test-6.jpg",
+            "assets/test-0.jpg",
+            "assets/test-1.jpg",
+            "assets/test-2.jpg",
+            "assets/test-3.jpg",
+            "assets/test-4.jpg",
+            "assets/test-5.jpg",
+            "assets/test-6.jpg",
         ],
         width: 1,
         interaction: {

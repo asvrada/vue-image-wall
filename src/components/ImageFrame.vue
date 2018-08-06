@@ -1,7 +1,6 @@
 <template>
     <div id="image" v-bind:style="styleDiv">
-        {{id}}
-        <img src="./../assets/test-8.jpg" v-bind:style="styleImg">
+        <img v-bind:src="getImageByID(id)" v-bind:style="styleImg">
     </div>
 </template>
 
@@ -17,6 +16,7 @@
         computed: {
             ...mapGetters([
                 'getWidthByID',
+                'getImageByID'
             ]),
             ...mapState({
                 config: state => state.config,
