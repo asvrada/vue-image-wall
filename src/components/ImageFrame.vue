@@ -5,13 +5,23 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from "vuex";
+    import {mapState, mapGetters, mapMutations} from "vuex";
 
     export default {
         name: "ImageFrame",
         props: ["id"],
         data() {
             return {};
+        },
+        mounted() {
+            (function (self) {
+                self.$el.addEventListener("mouseenter", self.onMouseEnter);
+            })(this);
+        },
+        beforeDestroy() {
+            (function (self) {
+                self.$el.removeEventListener("mouseenter", self.onMouseEnter);
+            })(this);
         },
         computed: {
             ...mapGetters([
@@ -38,6 +48,13 @@
             }
         },
         methods: {
+            ...mapMutations([
+                'updateHoverImage'
+            ]),
+            onMouseEnter: function () {
+                // change current hovering image to this id
+                this.updateHoverImage(this.id);
+            },
             /**
              * Offset of this image
              * This is used to align the image

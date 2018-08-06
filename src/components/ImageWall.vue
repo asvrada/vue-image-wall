@@ -25,10 +25,16 @@
             (function (self) {
                 window.addEventListener("resize", self.onUpdateWidth);
             })(this);
-            // Added on mouseover listener
+
+            // Added on mouse exit listener
             (function (self) {
-                window.addEventListener("mouseover", self.onMouseover);
+                // self.$el.addEventListener("mouseout", self.onMouseExit);
             })(this);
+
+            // Added on mouseover listener
+            // (function (self) {
+            //     self.$el.addEventListener("mouseover", self.onMouseover);
+            // })(this);
 
             this.onUpdateWidth();
         },
@@ -36,18 +42,26 @@
             (function (self) {
                 window.removeEventListener("resize", self.onUpdateWidth);
             })(this);
+
             (function (self) {
-                window.removeEventListener("mouseover", self.onMouseover);
+                // self.$el.removeEventListener("mouseout", self.onMouseExit);
             })(this);
+            // (function (self) {
+            //     self.$el.removeEventListener("mouseover", self.onMouseover);
+            // })(this);
         },
         methods: {
             ...mapMutations([
                 'updateWidth',
-                'updateMousePos'
+                'updateMousePos',
+                'updateHoverImage'
             ]),
             ...mapActions([
                 'init'
             ]),
+            onMouseExit: function() {
+                this.updateHoverImage(null);
+            },
             /**
              * Listener for mouseover event
              * @param event
