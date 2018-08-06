@@ -1,5 +1,6 @@
 <template>
     <div id="image" v-bind:style="styleDiv">
+        {{id}}
         <img src="./../assets/test-8.jpg" v-bind:style="styleImg">
     </div>
 </template>
@@ -9,6 +10,7 @@
 
     export default {
         name: "ImageFrame",
+        props: ["id"],
         data() {
             return {};
         },
@@ -22,7 +24,7 @@
             styleDiv: function () {
                 return {
                     transform: `skew(-${this.config.degreeSkew}deg)`,
-                    "width": `${this.getWidthByID(0) * 100}%`,
+                    "width": `${this.getWidthByID(this.id) * 100}%`,
                     "border-left": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
                     "border-right": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
                     "height": `${this.config.height}px`,

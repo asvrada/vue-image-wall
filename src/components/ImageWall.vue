@@ -1,10 +1,10 @@
 <template>
     <div id="imagewall" v-bind:style="styleWall">
         <div id="container_images" v-bind:style="styleContainer">
-            <image-frame></image-frame>
-            <image-frame></image-frame>
-            <image-frame></image-frame>
-            <image-frame></image-frame>
+            <image-frame
+                    v-for="id in getNumImages"
+                    v-bind:key="id"
+                    v-bind:id="id-1"></image-frame>
         </div>
     </div>
 </template>
@@ -12,26 +12,51 @@
 <script>
     import ImageFrame from "./ImageFrame";
 
-    import {mapState, mapGetters, mapMutations} from "vuex";
+    import {mapState, mapGetters, mapMutations, mapActions} from "vuex";
 
     export default {
         name: "ImageWall",
         components: {ImageFrame},
+        created() {
+            this.init();
+        },
         mounted() {
+            // Added on window resize listener
             (function (self) {
                 window.addEventListener("resize", self.onUpdateWidth);
             })(this);
+            // Added on mouseover listener
+            (function (self) {
+                window.addEventListener("mouseover", self.onMouseover);
+            })(this);
+
             this.onUpdateWidth();
         },
         beforeDestroy() {
             (function (self) {
                 window.removeEventListener("resize", self.onUpdateWidth);
             })(this);
+            (function (self) {
+                window.removeEventListener("mouseover", self.onMouseover);
+            })(this);
         },
         methods: {
             ...mapMutations([
-                'updateWidth'
+                'updateWidth',
+                'updateMousePos'
             ]),
+            ...mapActions([
+                'init'
+            ]),
+            /**
+             * Listener for mouseover event
+             * @param event
+             * @returns {number} mouse cordinate on X axis
+             */
+            onMouseover: function (event) {
+                this.updateMousePos(event.clientX);
+            },
+            // Listener for Window resize event
             onUpdateWidth: function () {
                 const newWidth = this.$el.getBoundingClientRect().width;
                 if (newWidth === this.width) {
@@ -49,7 +74,8 @@
                 config: state => state.config
             }),
             ...mapGetters([
-                'getContainerOffset'
+                'getContainerOffset',
+                'getNumImages'
             ]),
             styleWall: function () {
                 return {
