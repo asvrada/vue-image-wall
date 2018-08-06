@@ -2,7 +2,8 @@
 
 TODO:
 1. 兼容不同尺寸的图片
+lodash
+2. mouseout event
 2. 制作两种动画模式
     1. 苹果docker的
     2. 普通的
-    

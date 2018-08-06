@@ -4,26 +4,38 @@ import gaussian from "gaussian";
 
 import {degreeToRad} from "./helper";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     strict: true,
     state: {
         listImages: [
-            "assets/test-0.jpg",
             "assets/test-1.jpg",
             "assets/test-2.jpg",
             "assets/test-3.jpg",
             "assets/test-4.jpg",
             "assets/test-5.jpg",
             "assets/test-6.jpg",
+            "assets/test-7.jpg",
+            "assets/test-8.jpg",
         ],
+        // update on mounted
         width: 1,
         interaction: {
+            mode: "b",
+            hovering: null,
             mouseX: 1,
-            distribution: null,
-            // mean is determined by mouse position
-            variance: 0,
+            config: {
+                a: {
+                    distribution: null,
+                    variance: 0
+                },
+                b: {
+                    scale: 3,
+                    duation: 500
+                }
+            },
         },
         config: {
             radius: 30,
@@ -31,7 +43,7 @@ export default new Vuex.Store({
             maxNumberImage: 10,
             degreeSkew: 15,
             border: {
-                thickness: 4,
+                thickness: 2,
                 color: "orange"
             },
         },
@@ -61,24 +73,55 @@ export default new Vuex.Store({
          * @returns {function(*): number}
          */
         getWidthByID: (state, getters) => (id) => {
-            let relativeWidth = 1 + (state.config.height * getters.tan / state.width);
+            let callback = null;
 
-            if (state.interaction.gaussian === null) {
-                return relativeWidth / state.listImages.length;
+            const mode = state.interaction.mode;
+            switch (mode) {
+                case "a":
+                    callback = () => {
+                    };
+                    break;
+                case "b":
+                    callback = getters.getWidthByIDModeNormal;
+                    break;
+                default:
+                    throw "Error: Invalid mode: " + id;
             }
 
-            let width = getters.getDistributionByID(id);
-            return width;
+            return callback(id);
+        },
+        getWidthByIDModeNormal: (state, getters) => (id) => {
+            const length = state.listImages.length;
+            const relativeTotalWidth = 1 + (state.config.height * getters.tan / state.width);
+            const width = 1 / length;
+            const relativeWidth = relativeTotalWidth / length;
+            const curHovering = state.interaction.hovering;
+            const scale = state.interaction.config.b.scale;
+
+            if (curHovering === null) {
+                return relativeWidth;
+            }
+
+            if (curHovering === id) {
+                return relativeWidth * scale;
+            } else {
+                return relativeWidth * ((1 - scale * width) / ((length - 1) * width));
+            }
         },
     },
     mutations: {
-        updateDistribution({interaction}, variance) {
-            if (interaction.distribution !== null) {
-                interaction.distribution = null;
+        updateHoverImage({interaction}, id) {
+            interaction.hovering = id;
+        },
+        updateDistribution(state, variance) {
+            const config = state.interaction.config.a;
+
+            if (config.distribution !== null) {
+                config.distribution = null;
             }
 
-            interaction.variance = variance;
-            interaction.distribution = gaussian(0, interaction.variance);
+            config.variance = variance;
+            config.distribution = gaussian(0, config.variance);
         },
         updateWidth(state, newWidth) {
             state.width = newWidth;
@@ -93,6 +136,6 @@ export default new Vuex.Store({
     actions: {
         init({commit}) {
             commit("updateDistribution", 5);
-        }
+        },
     }
 });
