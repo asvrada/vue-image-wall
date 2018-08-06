@@ -36,7 +36,12 @@
             })(this);
         },
         updated() {
-            this.offset = this.offsetImage();
+
+            (function (self) {
+                setTimeout(function () {
+                    self.offset = self.offsetImage();
+                }, self.duation + 20);
+            })(this);
         },
         beforeDestroy() {
             (function (self) {
@@ -50,20 +55,22 @@
             ]),
             ...mapState({
                 config: state => state.config,
+                duation: state => state.interaction.config.b.duation
             }),
             styleDiv: function () {
                 return {
                     transform: `skew(-${this.config.degreeSkew}deg)`,
                     "width": `${this.getWidthByID(this.id) * 100}%`,
-                    "border-left": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
-                    "border-right": `${this.config.border.thickness / 2}px ${this.config.border.color} solid`,
+                    "border-right": `${this.config.border.thickness}px ${this.config.border.color} solid`,
                     "height": `${this.config.height}px`,
+                    "transition": `${this.duation}ms ease`,
                 };
             },
             styleImg: function () {
                 return {
                     transform: `skew(${this.config.degreeSkew}deg)`,
                     left: `${this.getOffset()}px`,
+                    "transition": `${this.duation}ms ease`,
                 };
             }
         },
@@ -85,7 +92,6 @@
             },
             offsetImage: function () {
                 const widthWindow = this.$el.getBoundingClientRect().width;
-                // todo: how to get this?
                 const widthImage = this.imageResolution.x;
 
                 return -((widthImage / 2) - (widthWindow / 2));

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "gaussian": "^1.1.0",
+    "lodash": "^4.17.10",
     "vue": "^2.5.16",
     "vuex": "^3.0.1"
   },

@@ -27,9 +27,9 @@
             })(this);
 
             // Added on mouse exit listener
-            // (function (self) {
-                // self.$el.addEventListener("mouseout", self.onMouseExit);
-            // })(this);
+            (function (self) {
+                self.$el.addEventListener("mouseout", self.onMouseExit);
+            })(this);
 
             // Added on mouseover listener
             // (function (self) {
@@ -43,9 +43,10 @@
                 window.removeEventListener("resize", self.onUpdateWidth);
             })(this);
 
-            // (function (self) {
-                // self.$el.removeEventListener("mouseout", self.onMouseExit);
-            // })(this);
+            (function (self) {
+                self.$el.removeEventListener("mouseout", self.onMouseExit);
+            })(this);
+
             // (function (self) {
             //     self.$el.removeEventListener("mouseover", self.onMouseover);
             // })(this);
@@ -59,7 +60,7 @@
             ...mapActions([
                 'init'
             ]),
-            onMouseExit: function() {
+            onMouseExit: function () {
                 this.updateHoverImage(null);
             },
             /**

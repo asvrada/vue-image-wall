@@ -14,7 +14,7 @@
 </script>
 
 <style>
-    #app {
-
+    body {
+        background-color: black;
     }
 </style>

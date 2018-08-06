@@ -4,13 +4,13 @@ import gaussian from "gaussian";
 
 import {degreeToRad} from "./helper";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     strict: true,
     state: {
         listImages: [
-            "assets/test-0.jpg",
             "assets/test-1.jpg",
             "assets/test-2.jpg",
             "assets/test-3.jpg",
@@ -32,7 +32,8 @@ export default new Vuex.Store({
                     variance: 0
                 },
                 b: {
-                    scale: 3
+                    scale: 3,
+                    duation: 500
                 }
             },
         },
@@ -42,7 +43,7 @@ export default new Vuex.Store({
             maxNumberImage: 10,
             degreeSkew: 15,
             border: {
-                thickness: 4,
+                thickness: 2,
                 color: "orange"
             },
         },
@@ -77,7 +78,8 @@ export default new Vuex.Store({
             const mode = state.interaction.mode;
             switch (mode) {
                 case "a":
-                    callback = () => {};
+                    callback = () => {
+                    };
                     break;
                 case "b":
                     callback = getters.getWidthByIDModeNormal;
@@ -134,6 +136,6 @@ export default new Vuex.Store({
     actions: {
         init({commit}) {
             commit("updateDistribution", 5);
-        }
+        },
     }
 });
