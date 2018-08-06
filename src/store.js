@@ -20,6 +20,7 @@ export default new Vuex.Store({
             "assets/test-7.jpg",
             "assets/test-8.jpg",
         ],
+        // update on mounted
         width: 1,
         interaction: {
             mode: "b",
@@ -31,7 +32,7 @@ export default new Vuex.Store({
                     variance: 0
                 },
                 b: {
-                    scale: 2
+                    scale: 3
                 }
             },
         },

@@ -1,6 +1,6 @@
 <template>
     <div id="image" v-bind:style="styleDiv">
-        <img v-bind:src="getImageByID(id)" v-bind:style="styleImg">
+        <img ref="elementImage" v-bind:src="getImageByID(id)" v-bind:style="styleImg">
     </div>
 </template>
 
@@ -11,12 +11,32 @@
         name: "ImageFrame",
         props: ["id"],
         data() {
-            return {};
+            return {
+                // default resolution
+                imageResolution: {
+                    x: 100,
+                    y: 100
+                },
+                offset: -250,
+            };
         },
         mounted() {
             (function (self) {
                 self.$el.addEventListener("mouseenter", self.onMouseEnter);
             })(this);
+
+            // Image onload
+            (function (self) {
+                const ref = self.$refs.elementImage;
+                ref.addEventListener("load", () => {
+                    self.imageResolution.x = ref.width;
+                    self.imageResolution.y = ref.height;
+                    self.$forceUpdate();
+                });
+            })(this);
+        },
+        updated() {
+            this.offset = this.offsetImage();
         },
         beforeDestroy() {
             (function (self) {
@@ -61,7 +81,14 @@
              * @returns {number}
              */
             getOffset: function () {
-                return -250;
+                return this.offset;
+            },
+            offsetImage: function () {
+                const widthWindow = this.$el.getBoundingClientRect().width;
+                // todo: how to get this?
+                const widthImage = this.imageResolution.x;
+
+                return -((widthImage / 2) - (widthWindow / 2));
             }
         }
     };
