@@ -19,17 +19,15 @@ export default new Vuex.Store({
             "./../assets/test-5.jpg",
             "./../assets/test-6.jpg",
         ],
-        width: 0,
+        width: 1,
         interaction: {
-            mouseX: 0,
+            mouseX: 1,
             distribution: null,
             // mean is determined by mouse position
             variance: 0,
         },
         config: {
             radius: 30,
-            // get this at runtime
-            width: 0,
             height: 200,
             maxNumberImage: 10,
             degreeSkew: 15,
@@ -43,6 +41,9 @@ export default new Vuex.Store({
         tan: (state) => {
             return Math.tan(degreeToRad(state.config.degreeSkew));
         },
+        getMousePoxByPercent: (state) => {
+            return state.interaction.mouseX / state.width;
+        },
         getNumImages: (state) => {
             return state.listImages.length;
         },
@@ -52,7 +53,7 @@ export default new Vuex.Store({
         getContainerOffset: (state, getters) => {
             return state.config.height / 2 * getters.tan;
         },
-        getDistribution: (state) => (x) => {
+        getDistributionByID: (state) => (x) => {
             return state.interaction.distribution.cdf(x) - state.interaction.distribution.cdf(x - 1);
         },
         /**
@@ -61,13 +62,13 @@ export default new Vuex.Store({
          * @returns {function(*): number}
          */
         getWidthByID: (state, getters) => (id) => {
-            let relativeWidth = 1 + (state.config.height * getters.tan / state.config.width);
+            let relativeWidth = 1 + (state.config.height * getters.tan / state.width);
 
             if (state.interaction.gaussian === null) {
                 return relativeWidth / state.listImages.length;
             }
 
-            let width = getters.getDistribution(id);
+            let width = getters.getDistributionByID(id);
             return width;
         },
     },
@@ -81,7 +82,7 @@ export default new Vuex.Store({
             interaction.distribution = gaussian(0, interaction.variance);
         },
         updateWidth(state, newWidth) {
-            state.config.width = newWidth;
+            state.width = newWidth;
         },
         updateMousePos(state, newX) {
             state.interaction.mouseX = newX;

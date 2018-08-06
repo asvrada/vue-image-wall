@@ -38,6 +38,11 @@
             }
         },
         methods: {
+            /**
+             * Offset of this image
+             * This is used to align the image
+             * @returns {number}
+             */
             getOffset: function () {
                 return -250;
             }

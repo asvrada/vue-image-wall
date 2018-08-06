@@ -56,7 +56,7 @@
             onMouseover: function (event) {
                 this.updateMousePos(event.clientX);
             },
-            // Listener for Window resize event
+            // Listener for resize event
             onUpdateWidth: function () {
                 const newWidth = this.$el.getBoundingClientRect().width;
                 if (newWidth === this.width) {
@@ -68,7 +68,7 @@
         },
         computed: {
             ...mapState({
-                width: state => state.config.width,
+                width: state => state.width,
                 pathPrefix: state => state.pathPrefix,
                 listImages: state => state.listImages,
                 config: state => state.config
