@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import gaussian from "gaussian";
+// import _ from "lodash";
 
 import {degreeToRad} from "./helper";
 
@@ -20,11 +21,15 @@ export default new Vuex.Store({
             "assets/test-7.jpg",
             "assets/test-8.jpg",
         ],
-        // update on mounted
+        /**
+         * Read only
+         * Width of the entire component
+         */
         width: 1,
         interaction: {
             mode: "b",
             hovering: null,
+            // Read only
             mouseX: 1,
             config: {
                 a: {
@@ -33,7 +38,7 @@ export default new Vuex.Store({
                 },
                 b: {
                     scale: 3,
-                    duation: 500
+                    duration: 500
                 }
             },
         },

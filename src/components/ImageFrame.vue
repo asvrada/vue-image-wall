@@ -21,6 +21,7 @@
             };
         },
         mounted() {
+            // Added listener for mouse hovering
             (function (self) {
                 self.$el.addEventListener("mouseenter", self.onMouseEnter);
             })(this);
@@ -36,12 +37,8 @@
             })(this);
         },
         updated() {
-
-            (function (self) {
-                setTimeout(function () {
-                    self.offset = self.offsetImage();
-                }, self.duation + 20);
-            })(this);
+            // center the image
+            this.offset = this.calculateOffset();
         },
         beforeDestroy() {
             (function (self) {
@@ -49,28 +46,41 @@
             })(this);
         },
         computed: {
+            ...mapState({
+                widthWindow: state => state.width,
+            }),
             ...mapGetters([
                 'getWidthByID',
                 'getImageByID'
             ]),
             ...mapState({
                 config: state => state.config,
-                duation: state => state.interaction.config.b.duation
+                duration: state => state.interaction.config.b.duration
             }),
+            /**
+             * Range: 0 - 1
+             * @returns {*|(function(*): number)}
+             */
+            getComputedWidthPrecent: function () {
+                return this.getWidthByID(this.id);
+            },
+            getComputedWidthPixel: function () {
+                return this.getComputedWidthPrecent * this.widthWindow;
+            },
             styleDiv: function () {
                 return {
                     transform: `skew(-${this.config.degreeSkew}deg)`,
-                    "width": `${this.getWidthByID(this.id) * 100}%`,
+                    "width": `${this.getComputedWidthPrecent * 100}%`,
                     "border-right": `${this.config.border.thickness}px ${this.config.border.color} solid`,
                     "height": `${this.config.height}px`,
-                    "transition": `${this.duation}ms ease`,
+                    "transition": `${this.duration}ms ease`,
                 };
             },
             styleImg: function () {
                 return {
                     transform: `skew(${this.config.degreeSkew}deg)`,
-                    left: `${this.getOffset()}px`,
-                    "transition": `${this.duation}ms ease`,
+                    left: `${this.offset}px`,
+                    "transition": `${this.duration}ms ease`,
                 };
             }
         },
@@ -82,19 +92,11 @@
                 // change current hovering image to this id
                 this.updateHoverImage(this.id);
             },
-            /**
-             * Offset of this image
-             * This is used to align the image
-             * @returns {number}
-             */
-            getOffset: function () {
-                return this.offset;
-            },
-            offsetImage: function () {
-                const widthWindow = this.$el.getBoundingClientRect().width;
+            calculateOffset: function () {
+                const widthFrame = this.getComputedWidthPixel;
                 const widthImage = this.imageResolution.x;
 
-                return -((widthImage / 2) - (widthWindow / 2));
+                return -((widthImage / 2) - (widthFrame / 2));
             }
         }
     };
