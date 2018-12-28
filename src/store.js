@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import gaussian from "gaussian";
-// import _ from "lodash";
 
 import {degreeToRad} from "./helper";
 
@@ -27,9 +26,19 @@ export default new Vuex.Store({
          */
         width: 1,
         interaction: {
+            /**
+             * a: apple macOS docker style
+             * b: normal
+             */
             mode: "b",
+            /**
+             * id of the image that mousing is hovering over now
+             */
             hovering: null,
-            // Read only
+            /**
+             * X position of the mouse/cursor
+             * Read only
+             */
             mouseX: 1,
             config: {
                 a: {
@@ -73,9 +82,9 @@ export default new Vuex.Store({
             return state.interaction.distribution.cdf(x) - state.interaction.distribution.cdf(x - 1);
         },
         /**
-         * 返回整体宽度的百分比
-         * @param state
-         * @returns {function(*): number}
+         * 获取某 id 的图片的宽度
+         *
+         * @return {function(*): number} 宽度的百分比表示
          */
         getWidthByID: (state, getters) => (id) => {
             let callback = null;
@@ -83,11 +92,10 @@ export default new Vuex.Store({
             const mode = state.interaction.mode;
             switch (mode) {
                 case "a":
-                    callback = () => {
-                    };
+                    callback = getters.getWidthByIDModeA;
                     break;
                 case "b":
-                    callback = getters.getWidthByIDModeNormal;
+                    callback = getters.getWidthByIDModeB;
                     break;
                 default:
                     throw "Error: Invalid mode: " + id;
@@ -95,7 +103,19 @@ export default new Vuex.Store({
 
             return callback(id);
         },
-        getWidthByIDModeNormal: (state, getters) => (id) => {
+        /**
+         * 获取A模式下的单个图像的宽度，以百分比表示
+         *
+         * @returns {function(*): number}
+         */
+        getWidthByIDModeA: (state, getters) => (id) => {
+            // todo
+            return 0.1;
+        },
+        /**
+         * 获取 B 模式下单个图像的宽度
+         */
+        getWidthByIDModeB: (state, getters) => (id) => {
             const length = state.listImages.length;
             const relativeTotalWidth = 1 + (state.config.height * getters.tan / state.width);
             const width = 1 / length;

@@ -1,6 +1,6 @@
 <template>
-    <div id="image" v-bind:style="styleDiv">
-        <img ref="elementImage" v-bind:src="getImageByID(id)" v-bind:style="styleImg">
+    <div id="container" v-bind:style="styleDiv">
+        <img alt="Some Image" ref="elementImage" v-bind:src="getImageByID(id)" v-bind:style="styleImg">
     </div>
 </template>
 
@@ -21,29 +21,26 @@
             };
         },
         mounted() {
+            const self = this;
+
             // Added listener for mouse hovering
-            (function (self) {
-                self.$el.addEventListener("mouseenter", self.onMouseEnter);
-            })(this);
+            this.$el.addEventListener("mouseenter", this.onMouseEnter);
 
             // Image onload
-            (function (self) {
-                const ref = self.$refs.elementImage;
-                ref.addEventListener("load", () => {
-                    self.imageResolution.x = ref.width;
-                    self.imageResolution.y = ref.height;
-                    self.$forceUpdate();
-                });
-            })(this);
+            // update the dimension of the image
+            const ref = self.$refs.elementImage;
+            ref.addEventListener("load", () => {
+                self.imageResolution.x = ref.width;
+                self.imageResolution.y = ref.height;
+                self.$forceUpdate();
+            });
         },
         updated() {
             // center the image
             this.offset = this.calculateOffset();
         },
         beforeDestroy() {
-            (function (self) {
-                self.$el.removeEventListener("mouseenter", self.onMouseEnter);
-            })(this);
+            this.$el.removeEventListener("mouseenter", this.onMouseEnter);
         },
         computed: {
             ...mapState({
@@ -61,16 +58,16 @@
              * Range: 0 - 1
              * @returns {*|(function(*): number)}
              */
-            getComputedWidthPrecent: function () {
+            getComputedWidthPercent: function () {
                 return this.getWidthByID(this.id);
             },
             getComputedWidthPixel: function () {
-                return this.getComputedWidthPrecent * this.widthWindow;
+                return this.getComputedWidthPercent * this.widthWindow;
             },
             styleDiv: function () {
                 return {
                     transform: `skew(-${this.config.degreeSkew}deg)`,
-                    "width": `${this.getComputedWidthPrecent * 100}%`,
+                    "width": `${this.getComputedWidthPercent * 100}%`,
                     "border-right": `${this.config.border.thickness}px ${this.config.border.color} solid`,
                     "height": `${this.config.height}px`,
                     "transition": `${this.duration}ms ease`,
@@ -103,13 +100,15 @@
 </script>
 
 <style scoped lang="scss">
-    #image {
+    #container {
+
         box-sizing: border-box;
         overflow: hidden;
 
         display: inline-block;
 
         img {
+            display: inline-block;
             position: relative;
         }
     }

@@ -1,15 +1,17 @@
 <template>
-    <div id="imagewall" v-bind:style="styleWall">
+    <div id="app" v-bind:style="styleWall" v-on:mouseout="onMouseout">
         <div id="container_images" v-bind:style="styleContainer">
             <image-frame
                     v-for="id in getNumImages"
                     v-bind:key="id"
-                    v-bind:id="id-1"></image-frame>
+                    v-bind:id="id - 1"></image-frame>
         </div>
     </div>
 </template>
 
 <script>
+    import _ from "lodash";
+
     import ImageFrame from "./ImageFrame";
 
     import {mapState, mapGetters, mapMutations, mapActions} from "vuex";
@@ -21,35 +23,16 @@
             this.init();
         },
         mounted() {
+            const self = this;
+
             // Added on window resize listener
-            (function (self) {
-                window.addEventListener("resize", self.onUpdateWidth);
-            })(this);
+            window.addEventListener("resize", _.debounce(() => {
+                self.onUpdateWidth();
+            }, 500));
 
-            // Added on mouse exit listener
-            // (function (self) {
-            //     self.$el.addEventListener("mouseout", self.onMouseExit);
-            // })(this);
-
-            // Added on mouseover listener
-            // (function (self) {
-            //     self.$el.addEventListener("mouseover", self.onMouseover);
-            // })(this);
-
-            this.onUpdateWidth();
-        },
-        beforeDestroy() {
-            (function (self) {
-                window.removeEventListener("resize", self.onUpdateWidth);
-            })(this);
-
-            // (function (self) {
-            //     self.$el.removeEventListener("mouseout", self.onMouseExit);
-            // })(this);
-
-            // (function (self) {
-            //     self.$el.removeEventListener("mouseover", self.onMouseover);
-            // })(this);
+            setTimeout(() => {
+                self.onUpdateWidth();
+            }, 100);
         },
         methods: {
             ...mapMutations([
@@ -61,16 +44,32 @@
                 'init',
                 'removeHoverImageDebounce'
             ]),
-            onMouseExit: function () {
-                // todo
-            },
-            /**
-             * Listener for mouseover event
-             * @param event
-             * @returns {number} mouse cordinate on X axis
-             */
-            onMouseover: function (event) {
-                this.updateMousePos(event.clientX);
+            onMouseout: function (event) {
+                function traverseChildren(elem) {
+                    let children = [];
+                    let q = [];
+                    q.push(elem);
+
+                    while (q.length > 0) {
+                        let head = q.pop();
+                        children.push(head);
+                        for (let i = 0; i < head.children.length; i++) {
+                            q.push(head.children[i]);
+                        }
+                    }
+
+                    return children;
+                }
+
+                // room for optimization
+                let children = traverseChildren(this.$el);
+                const e = event.relatedTarget;
+
+                if (!!~children.indexOf(e)) {
+                    return;
+                }
+
+                this.updateHoverImage(null);
             },
             // Listener for resize event
             onUpdateWidth: function () {
@@ -110,7 +109,7 @@
 </script>
 
 <style scoped lang="scss">
-    #imagewall {
+    #app {
         overflow: hidden;
 
         #container_images {

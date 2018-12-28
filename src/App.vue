@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <image-wall></image-wall>
+        <div>app</div>
     </div>
 </template>
 
@@ -13,5 +14,5 @@
 
 </script>
 
-<style>
+<style scoped>
 </style>
