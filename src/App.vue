@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <image-wall></image-wall>
-        <div>app</div>
     </div>
 </template>
 
