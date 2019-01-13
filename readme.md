@@ -46,7 +46,6 @@ To use this in your project, I'd recommend build and publish this repo to a sepa
 1. Support for images of all size
 2. Add two interaction modes 
     1. macOS dock
-    2. ~~Normal~~ (done)
 
 ## License
 
