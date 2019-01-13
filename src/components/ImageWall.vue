@@ -30,6 +30,7 @@
                 self.onUpdateWidth();
             }, 500));
 
+            // init width
             setTimeout(() => {
                 self.onUpdateWidth();
             }, 100);
