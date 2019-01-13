@@ -6,14 +6,16 @@ By hovering mouse over one of the images, that image will expand in width.
 
 [Demo](https://asvrada.github.io/vue-imagewall/)
 
-## How to use
+## Requirements 
 
-First, check dependency. Make sure you have following tools installed on your system:
+Make sure you have following tools installed on your system:
 
 * [node.js](https://nodejs.org/)
 * [yarn](https://yarnpkg.com/)
 
-Then, clone/download this repo
+## Getting Started
+
+First, clone/download this repo
 
 `git clone https://github.com/asvrada/vue-imagewall.git`
 
@@ -45,3 +47,7 @@ To use this in your project, I'd recommend build and publish this repo to a sepa
 2. Add two interaction modes 
     1. macOS dock
     2. ~~Normal~~ (done)
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
