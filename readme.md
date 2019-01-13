@@ -2,6 +2,8 @@
 
 An interactive vue component that displays multiple images in a row.
 
+By hovering mouse over one of the images, that image will expand in width.
+
 [Demo](https://asvrada.github.io/vue-imagewall/)
 
 ## How to use
@@ -40,6 +42,6 @@ To use this in your project, I'd recommend build and publish this repo to a sepa
 ## TODO:
 1. vue component
 1. Support for images of all size
-2. Add two interaction mode 
+2. Add two interaction modes 
     1. macOS dock
     2. ~~Normal~~ (done)
