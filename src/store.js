@@ -46,7 +46,9 @@ export default new Vuex.Store({
                     variance: 0
                 },
                 b: {
+                    // How much bigger will the hovering image be than others
                     scale: 3,
+                    // duration of transition animation
                     duration: 500
                 }
             },
@@ -120,10 +122,25 @@ export default new Vuex.Store({
          */
         getWidthByIDModeB: (state, getters) => (id) => {
             const length = state.listImages.length;
+
+            // Before width is inited, which will be 1, set the default width of each image to 1 / N
+            // where N is the number of images
+            if (state.width === 1) {
+                return 1 / length;
+            }
+
+            // Total width of this component, to account for the width lost with skewed images on both ends
             const relativeTotalWidth = 1 + (state.config.height * getters.tan / state.width);
+
+            // width, in percentage, of each images
             const width = 1 / length;
+
+            // above width taken skew into account
             const relativeWidth = relativeTotalWidth / length;
+
+            // id of the image currently hovering over
             const curHovering = state.interaction.hovering;
+
             const scale = state.interaction.config.b.scale;
 
             if (curHovering === null) {
