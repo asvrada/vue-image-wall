@@ -10,7 +10,7 @@ try {
     // Copy
     fs.copySync('dist', dir_page);
 
-    ghpages.publish(dir_page, function(err) {
+    ghpages.publish(dir_page, function (err) {
         console.log(err);
     });
 } catch (err) {

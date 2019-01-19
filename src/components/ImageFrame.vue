@@ -83,11 +83,11 @@
         },
         methods: {
             ...mapMutations([
-                'updateHoverImage'
+                'setHoverImage'
             ]),
             onMouseEnter: function () {
                 // change current hovering image to this id
-                this.updateHoverImage(this.id);
+                this.setHoverImage(this.id);
             },
             calculateOffset: function () {
                 const widthFrame = this.getComputedWidthPixel;

@@ -22,7 +22,7 @@ export default new Vuex.Store({
         ],
         /**
          * Read only
-         * Width of the entire component
+         * Width of this entire component (image wall)
          */
         width: 1,
         interaction: {
@@ -78,13 +78,16 @@ export default new Vuex.Store({
         getContainerOffset: (state, getters) => {
             return state.config.height / 2 * getters.tan;
         },
+        // todo
+        // this method is for mode A, which is still not implemented, and its of no use
         getDistributionByID: (state) => (x) => {
-            return state.interaction.distribution.cdf(x) - state.interaction.distribution.cdf(x - 1);
+            throw "TODO";
+            // return state.interaction.distribution.cdf(x) - state.interaction.distribution.cdf(x - 1);
         },
         /**
-         * 获取某 id 的图片的宽度
+         * Get the width (in percentage) of the image of given id
          *
-         * @return {function(*): number} 宽度的百分比表示
+         * @return {function(*): number} the width in range [0, 1]
          */
         getWidthByID: (state, getters) => (id) => {
             let callback = null;
@@ -104,7 +107,7 @@ export default new Vuex.Store({
             return callback(id);
         },
         /**
-         * 获取A模式下的单个图像的宽度，以百分比表示
+         * Get the width in mode A
          *
          * @returns {function(*): number}
          */
@@ -113,7 +116,7 @@ export default new Vuex.Store({
             return 0.1;
         },
         /**
-         * 获取 B 模式下单个图像的宽度
+         * Get the width in mode B
          */
         getWidthByIDModeB: (state, getters) => (id) => {
             const length = state.listImages.length;
@@ -135,10 +138,10 @@ export default new Vuex.Store({
         },
     },
     mutations: {
-        updateHoverImage({interaction}, id) {
+        setHoverImage({interaction}, id) {
             interaction.hovering = id;
         },
-        updateDistribution(state, variance) {
+        setDistribution(state, variance) {
             const config = state.interaction.config.a;
 
             if (config.distribution !== null) {
@@ -148,19 +151,19 @@ export default new Vuex.Store({
             config.variance = variance;
             config.distribution = gaussian(0, config.variance);
         },
-        updateWidth(state, newWidth) {
+        setWidth(state, newWidth) {
             state.width = newWidth;
         },
-        updateMousePos(state, newX) {
+        setMousePos(state, newX) {
             state.interaction.mouseX = newX;
         },
-        assignImages(state, listURLToImages) {
+        setImages(state, listURLToImages) {
             state.listImages = listURLToImages;
         },
     },
     actions: {
         init({commit}) {
-            commit("updateDistribution", 5);
+            commit("setDistribution", 5);
         },
     }
 });

@@ -25,21 +25,21 @@
         mounted() {
             const self = this;
 
-            // Added on window resize listener
+            // Add listener for window resize event
             window.addEventListener("resize", _.debounce(() => {
                 self.onUpdateWidth();
             }, 500));
 
-            // init width
+            // manually trigger the update
             setTimeout(() => {
                 self.onUpdateWidth();
-            }, 100);
+            }, 10);
         },
         methods: {
             ...mapMutations([
-                'updateWidth',
-                'updateMousePos',
-                'updateHoverImage'
+                'setWidth',
+                'setMousePos',
+                'setHoverImage'
             ]),
             ...mapActions([
                 'init',
@@ -70,7 +70,7 @@
                     return;
                 }
 
-                this.updateHoverImage(null);
+                this.setHoverImage(null);
             },
             // Listener for resize event
             onUpdateWidth: function () {
@@ -79,7 +79,7 @@
                     return;
                 }
 
-                this.updateWidth(newWidth);
+                this.setWidth(newWidth);
             }
         },
         computed: {
