@@ -1,4 +1,4 @@
 module.exports = {
     // Relative path
-    baseUrl: ""
+    publicPath: ""
 };
