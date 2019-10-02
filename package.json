@@ -10,18 +10,18 @@
   },
   "dependencies": {
     "gaussian": "^1.1.0",
-    "lodash": "^4.17.11",
-    "vue": "^2.5.16",
-    "vuex": "^3.0.1"
+    "lodash": "^4.17.15",
+    "vue": "^2.6.10",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
-    "@vue/cli-service": "^3.0.0-rc.10",
-    "gh-pages": "^2.0.1",
-    "node-sass": "^4.9.2",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.16"
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "gh-pages": "^2.1.1",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "babel": {
     "presets": [

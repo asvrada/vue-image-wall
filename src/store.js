@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import gaussian from "gaussian";
+// import gaussian from "gaussian";
 
 import {degreeToRad} from "./helper";
 
@@ -158,16 +158,17 @@ export default new Vuex.Store({
         setHoverImage({interaction}, id) {
             interaction.hovering = id;
         },
-        setDistribution(state, variance) {
-            const config = state.interaction.config.a;
-
-            if (config.distribution !== null) {
-                config.distribution = null;
-            }
-
-            config.variance = variance;
-            config.distribution = gaussian(0, config.variance);
-        },
+        // todo: macOS dock
+        // setDistribution(state, variance) {
+        //     const config = state.interaction.config.a;
+        //
+        //     if (config.distribution !== null) {
+        //         config.distribution = null;
+        //     }
+        //
+        //     config.variance = variance;
+        //     config.distribution = gaussian(0, config.variance);
+        // },
         setWidth(state, newWidth) {
             state.width = newWidth;
         },
@@ -180,7 +181,8 @@ export default new Vuex.Store({
     },
     actions: {
         init({commit}) {
-            commit("setDistribution", 5);
+            // this is for macOS dock mode
+            // commit("setDistribution", 5);
         },
     }
 });

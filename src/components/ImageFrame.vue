@@ -89,6 +89,7 @@
                 // change current hovering image to this id
                 this.setHoverImage(this.id);
             },
+            // horizontal offset
             calculateOffset: function () {
                 const widthFrame = this.getComputedWidthPixel;
                 const widthImage = this.imageResolution.x;
@@ -101,7 +102,6 @@
 
 <style scoped lang="scss">
     #container {
-
         box-sizing: border-box;
         overflow: hidden;
 
@@ -110,6 +110,7 @@
         img {
             display: inline-block;
             position: relative;
+            /*object-fit: cover;*/
         }
     }
 </style>
