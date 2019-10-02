@@ -82,14 +82,13 @@ export default new Vuex.Store({
         },
         // todo
         // this method is for mode A, which is still not implemented, and its of no use
-        getDistributionByID: (state) => (x) => {
-            throw "TODO";
+        // getDistributionByID: (state) => (x) => {
             // return state.interaction.distribution.cdf(x) - state.interaction.distribution.cdf(x - 1);
-        },
+        // },
         /**
          * Get the width (in percentage) of the image of given id
          *
-         * @return {function(*): number} the width in range [0, 1]
+         * @return {*} the width in range [0, 1]
          */
         getWidthByID: (state, getters) => (id) => {
             let callback = null;
@@ -113,10 +112,10 @@ export default new Vuex.Store({
          *
          * @returns {function(*): number}
          */
-        getWidthByIDModeA: (state, getters) => (id) => {
-            // todo
-            return 0.1;
-        },
+        // todo
+        // getWidthByIDModeA: (state, getters) => (id) => {
+            // return 0.1;
+        // },
         /**
          * Get the width in mode B
          */
@@ -180,9 +179,9 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        init({commit}) {
+        // init() {
             // this is for macOS dock mode
             // commit("setDistribution", 5);
-        },
+        // },
     }
 });
