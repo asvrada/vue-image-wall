@@ -30,10 +30,7 @@
         self.onUpdateWidth();
       }, 500));
 
-      // manually trigger the update
-      setTimeout(() => {
-        self.onUpdateWidth();
-      }, 10);
+      // manually trigger a update to get the width
       self.onUpdateWidth();
     },
     methods: {
