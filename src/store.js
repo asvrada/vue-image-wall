@@ -9,16 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   strict: true,
   state: {
-    listImages: [
-      "assets/test-1.jpg",
-      "assets/test-2.jpg",
-      "assets/test-3.jpg",
-      "assets/test-4.jpg",
-      "assets/test-5.jpg",
-      "assets/test-6.jpg",
-      "assets/test-7.jpg",
-      "assets/test-8.jpg",
-    ],
+    listImages: [],
     /**
      * Read only
      * Width of this entire component (image wall)
@@ -139,12 +130,13 @@ export default new Vuex.Store({
     setMousePos(state, newX) {
       state.interaction.mouseX = newX;
     },
-    setImages(state, listURLToImages) {
-      state.listImages = listURLToImages;
+    setImages(state, listURLImages) {
+      state.listImages = listURLImages;
     },
   },
   actions: {
-    init() {
+    init({commit}, listImages) {
+      commit('setImages', listImages);
     }
   }
 });

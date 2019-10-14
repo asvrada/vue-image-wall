@@ -19,8 +19,9 @@
   export default {
     name: "ImageWall",
     components: {ImageFrame},
+    props: ['listImages'],
     created() {
-      this.init();
+      this.init(this.listImages);
     },
     mounted() {
       const self = this;
@@ -57,7 +58,6 @@
       ...mapState({
         width: state => state.width,
         pathPrefix: state => state.pathPrefix,
-        listImages: state => state.listImages,
         config: state => state.config
       }),
       ...mapGetters([
