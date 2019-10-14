@@ -11,33 +11,13 @@
     name: "ImageFrame",
     props: ["id"],
     data() {
-      return {
-        // default resolution
-        imageResolution: {
-          x: 100,
-          y: 100
-        },
-        offset: -250,
-      };
+      return {};
     },
     mounted() {
       const self = this;
 
       // Added listener for mouse hovering
       this.$el.addEventListener("mouseenter", this.onMouseEnter);
-
-      // Image onload
-      // update the dimension of the image
-      const ref = self.$refs.elementImage;
-      ref.addEventListener("load", () => {
-        self.imageResolution.x = ref.width;
-        self.imageResolution.y = ref.height;
-        self.$forceUpdate();
-      });
-    },
-    updated() {
-      // center the image
-      this.offset = this.calculateOffset();
     },
     beforeDestroy() {
       this.$el.removeEventListener("mouseenter", this.onMouseEnter);
@@ -48,15 +28,15 @@
       }),
       ...mapGetters([
         'getWidthByID',
-        'getImageByID'
+        'getImageByID',
+        'getContainerOffset'
       ]),
       ...mapState({
         config: state => state.config,
         duration: state => state.interaction.config.b.duration
       }),
       /**
-       * Range: 0 - 1
-       * @returns {*|(function(*): number)}
+       * Return a float in range: 0 - 1
        */
       getComputedWidthPercent: function () {
         return this.getWidthByID(this.id);
@@ -75,8 +55,10 @@
       },
       styleImg: function () {
         return {
+          width: `${this.getComputedWidthPixel + 2 * this.getContainerOffset + 5}px`,
+          // left will be based on skew and height
+          left: `${-this.getContainerOffset}px`,
           transform: `skew(${this.config.degreeSkew}deg)`,
-          left: `${this.offset}px`,
           "transition": `${this.duration}ms ease`,
         };
       }
@@ -89,28 +71,23 @@
         // change current hovering image to this id
         this.setHoverImage(this.id);
       },
-      // horizontal offset
-      calculateOffset: function () {
-        const widthFrame = this.getComputedWidthPixel;
-        const widthImage = this.imageResolution.x;
-
-        return -((widthImage / 2) - (widthFrame / 2));
-      }
     }
   };
 </script>
 
 <style scoped lang="scss">
     #container {
-        box-sizing: border-box;
+        box-sizing: content-box;
         overflow: hidden;
 
         display: inline-block;
 
         img {
-            display: inline-block;
+            display: block;
             position: relative;
-            /*object-fit: cover;*/
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
         }
     }
 </style>

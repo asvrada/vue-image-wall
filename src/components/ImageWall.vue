@@ -34,6 +34,7 @@
       setTimeout(() => {
         self.onUpdateWidth();
       }, 10);
+      self.onUpdateWidth();
     },
     methods: {
       ...mapMutations([
@@ -69,13 +70,13 @@
       styleWall: function () {
         return {
           border: `${this.config.border.thickness}px ${this.config.border.color} solid`,
+          height: `${this.config.height}px`,
           "border-radius": `${this.config.radius}px`,
         };
       },
       styleContainer: function () {
         return {
           left: `-${this.getContainerOffset}px`,
-          height: `${this.config.height}px`
         };
       }
     },
@@ -85,6 +86,7 @@
 <style scoped lang="scss">
     #app {
         overflow: hidden;
+        box-sizing: border-box;
 
         #container_images {
             white-space: nowrap;
