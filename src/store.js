@@ -179,9 +179,9 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        // init() {
+        init() {
             // this is for macOS dock mode
             // commit("setDistribution", 5);
-        // },
+        },
     }
 });
