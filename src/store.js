@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import gaussian from "gaussian";
 
 import {degreeToRad} from "./helper";
 
@@ -27,7 +26,7 @@ export default new Vuex.Store({
     width: 0,
     interaction: {
       /**
-       * Mode a: apple macOS docker style
+       * Mode a: apple macOS docker style (todo)
        * Mode b: Image current cursor hovering over enlarges, other images shrinks
        */
       mode: "b",
@@ -41,10 +40,6 @@ export default new Vuex.Store({
        */
       mouseX: 1,
       config: {
-        a: {
-          distribution: null,
-          variance: 0
-        },
         b: {
           // How much bigger will the hovering image be than others
           scale: 3,
@@ -79,11 +74,6 @@ export default new Vuex.Store({
     getContainerOffset: (state, getters) => {
       return state.config.height / 2 * getters.tan;
     },
-    // todo
-    // this method is for mode A, which is still not implemented, and its of no use
-    // getDistributionByID: (state) => (x) => {
-    // return state.interaction.distribution.cdf(x) - state.interaction.distribution.cdf(x - 1);
-    // },
     /**
      * Get the width (in percentage) of the image of given id
      *
@@ -94,27 +84,15 @@ export default new Vuex.Store({
 
       const mode = state.interaction.mode;
       switch (mode) {
-        case "a":
-          callback = getters.getWidthByIDModeA;
-          break;
         case "b":
           callback = getters.getWidthByIDModeB;
           break;
         default:
-          throw "Error: Invalid mode: " + id;
+          throw "Error: Invalid mode: " + mode;
       }
 
       return callback(id);
     },
-    /**
-     * Get the width in mode A
-     *
-     * @returns {function(*): number}
-     */
-    // todo
-    // getWidthByIDModeA: (state, getters) => (id) => {
-    // return 0.1;
-    // },
     /**
      * Get the width of a image given id (in percentage)
      */
@@ -155,17 +133,6 @@ export default new Vuex.Store({
     setHoverImage({interaction}, id) {
       interaction.hovering = id;
     },
-    // todo: macOS dock
-    // setDistribution(state, variance) {
-    //     const config = state.interaction.config.a;
-    //
-    //     if (config.distribution !== null) {
-    //         config.distribution = null;
-    //     }
-    //
-    //     config.variance = variance;
-    //     config.distribution = gaussian(0, config.variance);
-    // },
     setWidth(state, newWidth) {
       state.width = newWidth;
     },
@@ -178,8 +145,6 @@ export default new Vuex.Store({
   },
   actions: {
     init() {
-      // this is for macOS dock mode
-      // commit("setDistribution", 5);
-    },
+    }
   }
 });

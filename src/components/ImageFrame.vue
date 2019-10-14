@@ -10,12 +10,7 @@
   export default {
     name: "ImageFrame",
     props: ["id"],
-    data() {
-      return {};
-    },
     mounted() {
-      const self = this;
-
       // Added listener for mouse hovering
       this.$el.addEventListener("mouseenter", this.onMouseEnter);
     },
