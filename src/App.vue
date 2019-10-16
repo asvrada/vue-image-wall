@@ -2,7 +2,7 @@
     <div id="app">
         <image-wall v-bind:list-images="this.listImages"></image-wall>
 
-!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114654492-4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
