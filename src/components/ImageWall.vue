@@ -35,6 +35,9 @@
       self.onUpdateWidth();
     },
     methods: {
+      track() {
+        this.$ga.page('/');
+      },
       ...mapMutations([
         'setWidth',
         'setMousePos',
