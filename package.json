@@ -1,12 +1,21 @@
 {
-  "name": "imagewall",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-imagewall",
+  "version": "0.5.0",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name imagewall ./src/bundle.js",
     "lint": "vue-cli-service lint"
   },
+  "main": "./dist/imagewall.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
   "dependencies": {
     "lodash": "^4.17.15",
     "vue": "^2.6.10",

@@ -3,7 +3,6 @@ import Vuex from "vuex";
 
 import {degreeToRad} from "./helper";
 
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
