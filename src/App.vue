@@ -10,6 +10,11 @@
   export default {
     name: 'app',
     components: {ImageWall},
+    methods: {
+      track() {
+        this.$ga.page('/');
+      }
+    },
     data: function () {
       const base = 'https://asvrada.github.io/assets/';
       let listImages = [
