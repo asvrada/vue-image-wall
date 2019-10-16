@@ -13,33 +13,15 @@ Make sure you have following tools installed on your system:
 * [node.js](https://nodejs.org/)
 * [yarn](https://yarnpkg.com/)
 
-## Getting Started
+## Install
 
-First, clone/download this repo
+`npm install vue-imagewall`
 
-`git clone https://github.com/asvrada/vue-imagewall.git`
+## Usage
 
-Under this repo, install dependency for this project
+As I am still learning how to properly publish this project as a npm package, you can't use it yet. Sorry.
 
-`yarn install`
-
-After this point, you can check the `package.json` to see available actions under `scripts` section.
-
-```bash
-# To run in the browser:
-yarn run serve
-
-# To build production build
-yarn run build
-
-# etc...
-```
-
-### To use as a vue component
-
-At this point, this repo is **not ready** to be used as normal/standard vue component because its still under early development.
-
-To use this in your project, I'd recommend build and publish this repo to a separate domain then include it using HTML tag `<frame>` from wherever you want to use it.
+Any contribution is welcomed.
 
 ## TODO:
 1. vue component
