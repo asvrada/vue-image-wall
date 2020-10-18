@@ -1,15 +1,15 @@
 <template>
-    <div id="app">
-        <image-wall v-bind:list-images="this.listImages"></image-wall>
-    </div>
+  <div id="app">
+    <image-wall-wrapper v-bind:link-images="this.listImages"></image-wall-wrapper>
+  </div>
 </template>
 
 <script>
-  import ImageWall from "./components/ImageWall";
 
+  import ImageWallWrapper from './components/ImageWallWrapper';
   export default {
     name: 'app',
-    components: {ImageWall},
+    components: { ImageWallWrapper },
     data: function () {
       const base = 'https://asvrada.github.io/assets/';
       let listImages = [
@@ -30,9 +30,9 @@
         absolutePath.push(base + listImages[i]);
       }
       return {
-        'listImages': absolutePath
+        'listImages': absolutePath,
       };
-    }
+    },
   };
 
 </script>
