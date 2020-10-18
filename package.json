@@ -1,20 +1,16 @@
 {
   "name": "vue-imagewall",
-  "version": "0.5.3",
+  "version": "0.5.7",
   "homepage": "https://github.com/asvrada/vue-imagewall",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name VueImageWall ./src/install.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "dist/imagewall.common.js",
+  "main": "dist/VueImageWall.common.js",
   "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "dist/*"
   ],
   "dependencies": {
     "lodash": "^4.17.15",

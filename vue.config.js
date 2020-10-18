@@ -1,4 +1,5 @@
 module.exports = {
     // Relative path
-    publicPath: ""
+    publicPath: "",
+    css: { extract: false }
 };
