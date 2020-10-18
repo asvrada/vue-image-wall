@@ -6,8 +6,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name VueImageWall ./src/install.js",
-    "lint": "vue-cli-service lint",
-    "semantic-release": "semantic-release"
+    "lint": "vue-cli-service lint"
   },
   "main": "dist/VueImageWall.common.js",
   "files": [
@@ -27,7 +26,6 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-vue": "^5.0.1",
     "sass-loader": "^8.0.0",
-    "semantic-release": "^17.2.1",
     "vue-template-compiler": "^2.6.10"
   },
   "babel": {
@@ -59,14 +57,4 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "publishConfig": {
-    "access": "public",
-    "branches": [
-      "master"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/asvrada/imagewall.git"
-  }
 }
