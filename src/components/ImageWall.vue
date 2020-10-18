@@ -1,93 +1,73 @@
 <template>
-    <div id="app" v-bind:style="styleWall">
-        <div id="container_images" v-bind:style="styleContainer">
-            <image-frame
-                    v-for="id in getNumImages"
-                    v-bind:key="id"
-                    v-bind:id="id - 1"></image-frame>
-        </div>
+  <div id="image-wall" v-bind:style="styleWall">
+    <div id="container_images" v-bind:style="styleContainer">
+      <image-frame
+        v-for="id in propListImages.length"
+        v-bind:key="id"
+
+        v-bind:prop-link-images="propListImages"
+
+        v-bind:prop-id="id - 1"
+        v-bind:prop-config-mode="propConfigMode"
+        v-bind:prop-config-general="propConfigGeneral"
+
+        v-bind:prop-runtime-variable="propRuntimeVariable"
+
+        v-bind:prop-get-container-offset="propGetContainerOffset"
+        v-bind:prop-image-frame-width-percentage="propImageFrameWidthsPercentage[id - 1]"
+
+        @setHoverImage="handleSetHoverImage"
+      ></image-frame>
     </div>
+  </div>
 </template>
 
 <script>
-  import _ from "lodash";
-
-  import ImageFrame from "./ImageFrame";
-
-  import {mapState, mapGetters, mapMutations, mapActions} from "vuex";
+  import ImageFrame from './ImageFrame';
 
   export default {
-    name: "ImageWall",
-    components: {ImageFrame},
-    props: ['listImages'],
-    created() {
-      this.init(this.listImages);
-    },
-    mounted() {
-      const self = this;
+    name: 'ImageWall',
+    components: { ImageFrame },
+    props: [
+      'propListImages',
+      'propConfigMode',
+      'propConfigGeneral',
 
-      // Add listener for window resize event
-      window.addEventListener("resize", _.debounce(() => {
-        self.onUpdateWidth();
-      }, 500));
+      'propRuntimeVariable',
 
-      // manually trigger a update to get the width
-      self.onUpdateWidth();
-    },
+      // getter from previous vuex store
+      'propGetContainerOffset',
+      'propImageFrameWidthsPercentage',
+    ],
     methods: {
-      ...mapMutations([
-        'setWidth',
-        'setMousePos',
-        'setHoverImage'
-      ]),
-      ...mapActions([
-        'init',
-        'removeHoverImageDebounce'
-      ]),
-      // Listener for resize event
-      onUpdateWidth: function () {
-        const newWidth = this.$el.getBoundingClientRect().width;
-        if (newWidth === this.width) {
-          return;
-        }
-
-        this.setWidth(newWidth);
-      }
+      handleSetHoverImage: function (id) {
+        this.$emit('setHoverImage', id);
+      },
     },
     computed: {
-      ...mapState({
-        width: state => state.width,
-        pathPrefix: state => state.pathPrefix,
-        config: state => state.config
-      }),
-      ...mapGetters([
-        'getContainerOffset',
-        'getNumImages'
-      ]),
       styleWall: function () {
         return {
-          border: `${this.config.border.thickness}px ${this.config.border.color} solid`,
-          height: `${this.config.height}px`,
-          "border-radius": `${this.config.radius}px`,
+          border: `${this.propConfigGeneral.border.thickness}px ${this.propConfigGeneral.border.color} solid`,
+          height: `${this.propConfigGeneral.height}px`, 'border-radius': `${this.propConfigGeneral.radius}px`,
         };
       },
       styleContainer: function () {
         return {
-          left: `-${this.getContainerOffset}px`,
+          left: `-${this.propGetContainerOffset}px`,
         };
-      }
+      },
     },
   };
 </script>
 
 <style scoped lang="scss">
-    #app {
-        overflow: hidden;
-        box-sizing: border-box;
+  #image-wall {
+    overflow: hidden;
+    box-sizing: border-box;
 
-        #container_images {
-            white-space: nowrap;
-            position: relative;
-        }
+    #container_images {
+      white-space: nowrap;
+      position: relative;
     }
+  }
 </style>
