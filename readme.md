@@ -9,13 +9,18 @@ By hovering mouse over one of the images, that image will expand in width.
 [Demo](https://asvrada.github.io/rwby-imagewall-demo/)
 
 ## Install
-__UNDER DEVELOPMENT__
 
-`npm install vue-imagewall`
+```
+npm install vue-template-compiler --save-dev
+npm install vue-imagewall
+```
 
 or
 
-`yarn add vue-imagewall`
+```
+yarn add vue-template-compiler -D
+yarn add vue-imagewall
+```
 
 ## Usage
 __UNDER DEVELOPMENT__
