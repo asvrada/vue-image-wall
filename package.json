@@ -4,9 +4,8 @@
   "homepage": "https://github.com/asvrada/vue-imagewall",
   "private": false,
   "scripts": {
-    "generate": "node generate.js",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --modern --target lib --name imagewall src/generate.js",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "main": "dist/imagewall.common.js",

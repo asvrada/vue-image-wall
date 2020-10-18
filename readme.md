@@ -1,22 +1,21 @@
 # vue image wall
 
+[![Build Status](https://travis-ci.com/asvrada/vue-imagewall.svg?branch=master)](https://travis-ci.com/asvrada/vue-imagewall)
+
 An interactive vue component that displays multiple images in a row.
 
 By hovering mouse over one of the images, that image will expand in width.
 
 [Demo](https://asvrada.github.io/vue-imagewall/)
 
-## Requirements 
-
-Make sure you have following tools installed on your system:
-
-* [node.js](https://nodejs.org/)
-* [yarn](https://yarnpkg.com/)
-
 ## Install
 __UNDER DEVELOPMENT, NOT WORKING YET__
 
 `npm install vue-imagewall`
+
+or
+
+`yarn add vue-imagewall`
 
 ## Usage
 __UNDER DEVELOPMENT, NOT WORKING YET__
