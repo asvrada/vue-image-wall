@@ -25,7 +25,7 @@ yarn add vue-imagewall
 ## Usage
 __UNDER DEVELOPMENT__
 
-**Width is fixed to 250px, fix is WIP**
+**Component height is fixed to 250px, fix is WIP**
 
 ```
 <template>
