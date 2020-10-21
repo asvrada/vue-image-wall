@@ -65,12 +65,12 @@ __FEATURES UNDER DEVELOPMENT__
 |-----|------|-------|------|
 | linkImages | `[String]` | (required) | Contains list of images that this component will display |
 
-As I am still learning how to properly publish this project as a npm package, you can't use it yet. Sorry.
+## Contribution
 
-Any contribution is welcomed. The GitHub repo for this project is [here](https://github.com/asvrada/vue-imagewall).
+Any is welcome!
 
 ## TODO:
-2. Add two interaction modes 
+1. Add two interaction modes 
     1. macOS dock
 
 ## License
