@@ -1,6 +1,6 @@
 {
   "name": "vue-imagewall",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "An interactive vue component that displays multiple images in a row",
   "homepage": "https://github.com/asvrada/vue-imagewall",
   "private": false,
