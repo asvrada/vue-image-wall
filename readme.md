@@ -65,9 +65,9 @@ __FEATURES UNDER DEVELOPMENT__
 |-----|------|-------|------|
 | linkImages | `[String]` | (required) | Contains list of images that this component will display |
 
-## Contribution
+## How to Contribute
 
-Any is welcome!
+Any comment/issue/PR is welcome!
 
 ## TODO:
 1. Add two interaction modes 
