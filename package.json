@@ -1,6 +1,7 @@
 {
   "name": "vue-imagewall",
   "version": "0.5.8",
+  "description": "An interactive vue component that displays multiple images in a row",
   "homepage": "https://github.com/asvrada/vue-imagewall",
   "private": false,
   "scripts": {
@@ -8,9 +9,10 @@
     "build": "vue-cli-service build --target lib --name VueImageWall ./src/install.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "dist/VueImageWall.common.js",
+  "main": "dist/VueImageWall.umd.js",
   "files": [
-    "dist/*"
+    "dist/*",
+    "src/*"
   ],
   "dependencies": {
     "lodash": "^4.17.15",
