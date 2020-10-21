@@ -1,13 +1,14 @@
 {
   "name": "vue-imagewall",
-  "version": "0.5.9",
+  "version": "0.0.0-development",
   "description": "An interactive vue component that displays multiple images in a row",
   "homepage": "https://github.com/asvrada/vue-imagewall",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name VueImageWall ./src/install.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "semantic-release": "semantic-release"
   },
   "main": "dist/VueImageWall.umd.js",
   "files": [
@@ -28,6 +29,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-vue": "^5.0.1",
     "sass-loader": "^8.0.0",
+    "semantic-release": "^17.2.1",
     "vue-template-compiler": "^2.6.10"
   },
   "keywords": [
@@ -68,5 +70,9 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asvrada/imagewall.git"
+  }
 }
