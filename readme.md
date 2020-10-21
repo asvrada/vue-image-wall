@@ -23,9 +23,10 @@ yarn add vue-imagewall
 ```
 
 ## Usage
-__UNDER DEVELOPMENT__
+__FEATURES UNDER DEVELOPMENT__
 
-**Component height is fixed to 250px, fix is WIP**
+1. Width is fixed to 250px, will be fixed
+2. Will add ability to accept config (scale of image, animation duration, etc)
 
 ```
 <template>
@@ -44,11 +45,11 @@ __UNDER DEVELOPMENT__
     data: function () {
       return {
         'listImages': [
-          'https://asvrada.github.io/assets/0.jpg',
-          'https://asvrada.github.io/assets/1.jpg',
-          'https://asvrada.github.io/assets/2.jpg',
-          'https://asvrada.github.io/assets/3.jpg',
-          'https://asvrada.github.io/assets/4.jpg'
+          '/assets/0.jpg',
+          '/assets/1.jpg',
+          '/assets/2.jpg',
+          '/assets/3.jpg',
+          '/assets/4.jpg'
         ],
       };
     },
@@ -62,7 +63,7 @@ __UNDER DEVELOPMENT__
 
 | props | type | default value | note |
 |-----|------|-------|------|
-| linkImages | `[String]` | `[]` | Contains list of images in URL (absolute URL) that this component will display |
+| linkImages | `[String]` | (required) | Contains list of images that this component will display |
 
 As I am still learning how to properly publish this project as a npm package, you can't use it yet. Sorry.
 
