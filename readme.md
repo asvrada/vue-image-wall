@@ -44,7 +44,7 @@ __FEATURES UNDER DEVELOPMENT__
     components: { VueImageWall },
     data: function () {
       return {
-        'listImages': [
+        listImages: [
           '/assets/0.jpg',
           '/assets/1.jpg',
           '/assets/2.jpg',
