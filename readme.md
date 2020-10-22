@@ -12,14 +12,14 @@ By hovering mouse over one of the images, that image will expand in width.
 
 ```
 npm install vue-template-compiler --save-dev
-npm install vue-imagewall
+npm install vue-image-wall
 ```
 
 or
 
 ```
 yarn add vue-template-compiler -D
-yarn add vue-imagewall
+yarn add vue-image-wall
 ```
 
 ## Usage
@@ -37,7 +37,7 @@ __FEATURES UNDER DEVELOPMENT__
 
 <script>
 
-  import VueImageWall from 'vue-imagewall';
+  import VueImageWall from 'vue-image-wall';
 
   export default {
     name: 'app',
