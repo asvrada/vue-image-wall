@@ -2,6 +2,12 @@
 
 [![Build Status](https://travis-ci.com/asvrada/vue-imagewall.svg?branch=master)](https://travis-ci.com/asvrada/vue-imagewall)
 
+# Deprecated package
+
+This project has been moved to [vue-image-wall](https://github.com/asvrada/vue-image-wall)
+
+---
+
 An interactive vue component that displays multiple images in a row.
 
 By hovering mouse over one of the images, that image will expand in width.
