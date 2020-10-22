@@ -1,8 +1,8 @@
 {
-  "name": "vue-imagewall",
+  "name": "vue-image-wall",
   "version": "0.0.0-development",
   "description": "An interactive vue component that displays multiple images in a row",
-  "homepage": "https://github.com/asvrada/vue-imagewall",
+  "homepage": "https://github.com/asvrada/vue-image-wall",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -41,7 +41,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/asvrada/vue-imagewall/issues"
+    "url": "https://github.com/asvrada/vue-image-wall/issues"
   },
   "babel": {
     "presets": [
@@ -74,6 +74,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/asvrada/imagewall.git"
+    "url": "https://github.com/asvrada/vue-image-wall.git"
   }
 }
