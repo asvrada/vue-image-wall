@@ -6,7 +6,7 @@ An interactive vue component that displays multiple images in a row.
 
 By hovering mouse over one of the images, that image will expand in width.
 
-[Demo](https://asvrada.github.io/rwby-imagewall-demo/)
+[Demo](https://asvrada.github.io/rwby-imagewall-demo/) | [Demo Project](https://github.com/asvrada/rwby-imagewall-demo)
 
 ## Install
 
