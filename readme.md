@@ -1,6 +1,6 @@
 # vue image wall
 
-[![Build Status](https://travis-ci.com/asvrada/vue-imagewall.svg?branch=master)](https://travis-ci.com/asvrada/vue-imagewall)
+[![Build Status](https://travis-ci.com/asvrada/vue-image-wall.svg?branch=master)](https://travis-ci.com/asvrada/vue-image-wall)
 
 An interactive vue component that displays multiple images in a row.
 
