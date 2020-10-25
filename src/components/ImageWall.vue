@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import ImageFrame from './ImageFrame';
+  import ImageFrame from './ImageFrame.vue';
 
   export default {
     name: 'ImageWall',
