@@ -17,7 +17,7 @@
 <script>
   import _ from 'lodash';
   import { degreeToRad } from '../helper';
-  import ImageWall from './ImageWall';
+  import ImageWall from './ImageWall.vue';
 
   /**
    * This wrapper contain all the configuration for Image Wall component
