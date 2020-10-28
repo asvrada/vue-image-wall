@@ -8,18 +8,8 @@ git:
 
 cache: yarn
 
-script: yarn run build
-
 jobs:
   include:
-    - stage: deploy
-      provider: pages
-      skip_cleanup: true
-      github_token: $GITHUB_TOKEN
-      local_dir: dist
-      on:
-        branch: master
-
     # Define the release stage that runs semantic-release
     - stage: release
       node_js: "node"
