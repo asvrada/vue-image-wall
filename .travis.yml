@@ -1,7 +1,7 @@
 language: node_js
 os: linux
 node_js:
-  - "node"
+  - "15"
 
 git:
   depth: 3
